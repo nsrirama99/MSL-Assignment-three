@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreMotion
 
 class ViewControllerTwo: UIViewController {
 
