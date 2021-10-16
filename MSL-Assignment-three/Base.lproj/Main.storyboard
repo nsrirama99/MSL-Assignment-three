@@ -119,6 +119,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Set New Goal"/>
+                                <connections>
+                                    <action selector="setNewGoal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLN-25-qz8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Activity" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOe-9w-UNA">
                                 <rect key="frame" x="87" y="414" width="240" height="68"/>
@@ -139,10 +142,75 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="5J6-AH-oiv"/>
+                    <connections>
+                        <outlet property="YesterdayLabel" destination="rPw-Va-sWs" id="EMt-fN-Oxk"/>
+                        <outlet property="currActivityLabel" destination="eOe-9w-UNA" id="Zx6-Bh-czX"/>
+                        <outlet property="setGoalButton" destination="KLc-0N-nyP" id="Yde-jv-Qj2"/>
+                        <outlet property="stepsToGoalLabel" destination="GfK-cX-NS5" id="PXh-55-Eid"/>
+                        <outlet property="todayLabel" destination="zr5-Dr-P43" id="QVE-z9-lRI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="353.62318840579712" y="-709.15178571428567"/>
+        </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="ge0-2I-M4M">
+            <objects>
+                <viewController id="am4-sa-Ah0" customClass="ModalViewController" customModule="MSL_Assignment_three" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VWs-rM-FKM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghz-G8-xVz">
+                                <rect key="frame" x="277" y="269" width="81" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="BI4-4x-MmZ"/>
+                                    <constraint firstAttribute="width" constant="81" id="qt1-t4-FAH"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Set">
+                                    <fontDescription key="titleFontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="1"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="dismissView:" destination="am4-sa-Ah0" eventType="touchUpInside" id="iz9-Vr-M3x"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set a Daily Step Goal" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43F-aF-Scf">
+                                <rect key="frame" x="62" y="65" width="290" height="120"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gmi-Pi-9c4">
+                                <rect key="frame" x="20" y="269" width="227" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HMG-2T-7YD"/>
+                                    <constraint firstAttribute="width" constant="227" id="UbH-LT-Zyr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="78P-sY-hrl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ghz-G8-xVz" firstAttribute="top" secondItem="Gmi-Pi-9c4" secondAttribute="top" id="C5p-5m-YXd"/>
+                            <constraint firstItem="43F-aF-Scf" firstAttribute="centerX" secondItem="78P-sY-hrl" secondAttribute="centerX" id="CAv-xA-fF4"/>
+                            <constraint firstItem="78P-sY-hrl" firstAttribute="bottom" secondItem="Ghz-G8-xVz" secondAttribute="bottom" constant="527" id="CfB-zX-uGg"/>
+                            <constraint firstItem="78P-sY-hrl" firstAttribute="trailing" secondItem="Ghz-G8-xVz" secondAttribute="trailing" constant="56" id="W8B-21-vXw"/>
+                            <constraint firstItem="43F-aF-Scf" firstAttribute="top" secondItem="78P-sY-hrl" secondAttribute="top" constant="21" id="eK0-FC-Fa4"/>
+                            <constraint firstItem="Gmi-Pi-9c4" firstAttribute="top" secondItem="43F-aF-Scf" secondAttribute="bottom" constant="87" id="ey0-By-sRl"/>
+                            <constraint firstItem="Ghz-G8-xVz" firstAttribute="leading" secondItem="Gmi-Pi-9c4" secondAttribute="trailing" constant="30" id="zhN-Ha-lLE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="stepGoalTextField" destination="Gmi-Pi-9c4" id="2Ob-1z-pUD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rh3-zs-Xck" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257.9710144927537" y="-703.125"/>
         </scene>
         <!--View Controller Two-->
         <scene sceneID="eJs-td-0c0">

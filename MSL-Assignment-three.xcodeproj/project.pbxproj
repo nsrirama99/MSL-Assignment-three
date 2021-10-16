@@ -18,6 +18,7 @@
 		2E592E4D2717D23F00177877 /* MSL_Assignment_threeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E592E4C2717D23F00177877 /* MSL_Assignment_threeUITestsLaunchTests.swift */; };
 		2E592E5A2717D80500177877 /* TableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E592E592717D80500177877 /* TableTableViewController.swift */; };
 		2E592E5C2717DBA300177877 /* ViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E592E5B2717DBA300177877 /* ViewControllerTwo.swift */; };
+		2E592E5E271A78DA00177877 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E592E5D271A78DA00177877 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		2E592E4C2717D23F00177877 /* MSL_Assignment_threeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSL_Assignment_threeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2E592E592717D80500177877 /* TableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTableViewController.swift; sourceTree = "<group>"; };
 		2E592E5B2717DBA300177877 /* ViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTwo.swift; sourceTree = "<group>"; };
+		2E592E5D271A78DA00177877 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				2E592E292717D23900177877 /* AppDelegate.swift */,
 				2E592E2B2717D23900177877 /* SceneDelegate.swift */,
 				2E592E2D2717D23900177877 /* ViewController.swift */,
+				2E592E5D271A78DA00177877 /* ModalViewController.swift */,
 				2E592E2F2717D23900177877 /* Main.storyboard */,
 				2E592E5B2717DBA300177877 /* ViewControllerTwo.swift */,
 				2E592E592717D80500177877 /* TableTableViewController.swift */,
@@ -268,6 +271,7 @@
 				2E592E5A2717D80500177877 /* TableTableViewController.swift in Sources */,
 				2E592E2E2717D23900177877 /* ViewController.swift in Sources */,
 				2E592E2A2717D23900177877 /* AppDelegate.swift in Sources */,
+				2E592E5E271A78DA00177877 /* ModalViewController.swift in Sources */,
 				2E592E2C2717D23900177877 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
