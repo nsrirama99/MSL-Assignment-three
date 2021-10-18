@@ -45,7 +45,11 @@ class ViewController: UIViewController, ModalDelegate {
         }
     }
     
-    lazy var stepGoal = -999
+    lazy var stepGoal = -999 {
+        didSet {
+            stepsToGoalLabel.text = "Steps to Reach Goal: \(stepGoal-currSteps)"
+        }
+    }
     lazy var stepsToGoal = -999
     lazy var stepsToPrevGoal = -999
     
@@ -133,7 +137,7 @@ class ViewController: UIViewController, ModalDelegate {
     
     
     @IBAction func setNewGoal(_ sender: Any) {
-        let modalController = ModalViewController()
+        let modalController = storyboard?.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
         modalController.delegate = self
         self.present(modalController, animated: true, completion: nil)
     }

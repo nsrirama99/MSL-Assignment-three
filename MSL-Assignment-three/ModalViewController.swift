@@ -16,12 +16,12 @@ class ModalViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stepGoalTextField.delegate = self
+        //stepGoalTextField.delegate = self
         // Do any additional setup after loading the view.
         
         //stepGoalTextField.text = "0"
         
-        stepGoalTextField.becomeFirstResponder()
+        //stepGoalTextField.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
