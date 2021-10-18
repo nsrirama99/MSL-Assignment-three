@@ -53,14 +53,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let right = SKSpriteNode()
         let top = SKSpriteNode()
         
-        left.size = CGSize(width: size.width * 0.01, height: size.height * 0.8)
-        left.position = CGPoint(x:0, y:size.height*0.6)
+        left.size = CGSize(width: 10, height: size.height * 0.7)
+        left.position = CGPoint(x:0, y:size.height*0.5)
         
-        right.size = CGSize(width: size.width * 0.01, height: size.height * 0.8)
-        right.position = CGPoint(x:size.width, y:size.height*0.6)
+        right.size = CGSize(width: 10, height: size.height * 0.7)
+        right.position = CGPoint(x:size.width, y:size.height*0.5)
         
-        top.size = CGSize(width: size.width, height: size.height * 0.01)
-        top.position = CGPoint(x:0, y:size.height)
+        top.size = CGSize(width: size.width * 2, height: 10)
+        top.position = CGPoint(x:0, y:size.height * 0.85)
         
         for obj in [left, right, top]{
             obj.color = UIColor.black
@@ -73,15 +73,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBall(){
-        let ball = SKSpriteNode(imageNamed: "ball.png")
-        
-        ball.size = CGSize(width:size.width * 0.04, height:size.width * 0.04)
+        let ball = SKShapeNode(circleOfRadius: 10)
+        ball.fillColor = UIColor.black
         
         let randNumber = CGFloat(Float.random(in: 0.1...0.9))
         ball.position = CGPoint(x: size.width * randNumber, y: size.height * 0.5)
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.02)
+        ball.physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.03)
         ball.physicsBody?.restitution = 1.1
         ball.physicsBody?.isDynamic = true
+        ball.physicsBody?.affectedByGravity = false
         ball.physicsBody?.contactTestBitMask = 0x00000001
         ball.physicsBody?.collisionBitMask = 0x00000001
         ball.physicsBody?.categoryBitMask = 0x00000001
@@ -91,11 +91,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addPaddle(){
         let paddle = SKSpriteNode()
-        paddle.size = CGSize(width:size.width * 0.2, height:size.width * 0.01)
-        paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.2)
+        paddle.size = CGSize(width: 100 + extraSteps, height: 10)
+        paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
+        paddle.color = UIColor.gray
         paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
         paddle.physicsBody?.isDynamic = true
         paddle.physicsBody?.allowsRotation = false
+        paddle.physicsBody?.affectedByGravity = false
         self.addChild(paddle)
     }
     
