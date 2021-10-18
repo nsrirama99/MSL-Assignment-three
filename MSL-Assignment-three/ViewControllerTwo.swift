@@ -6,14 +6,18 @@
 //
 
 import UIKit
-import CoreMotion
+import SpriteKit
 
 class ViewControllerTwo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // setup game scene
+        let scene = GameScene(size:view.bounds.size)
+        let skView = view as! SKView
+        scene.scaleMode = .resizeFill
+        skView.presentScene(scene)
     }
     
 

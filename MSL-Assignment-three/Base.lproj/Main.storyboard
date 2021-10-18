@@ -240,25 +240,10 @@
         <scene sceneID="eJs-td-0c0">
             <objects>
                 <viewController id="oyE-gw-koK" customClass="ViewControllerTwo" customModule="MSL_Assignment_three" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ccv-S4-8jW">
+                    <skView key="view" contentMode="scaleToFill" id="NcG-oV-jL3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cum2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-Xz-0xl">
-                                <rect key="frame" x="99" y="167" width="217" height="62"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Bjb-0S-Hr3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6c7-Xz-0xl" firstAttribute="centerY" secondItem="Bjb-0S-Hr3" secondAttribute="centerY" id="5TD-t0-TJ1"/>
-                            <constraint firstItem="6c7-Xz-0xl" firstAttribute="centerX" secondItem="Bjb-0S-Hr3" secondAttribute="centerX" id="a7B-Dy-hdN"/>
-                            <constraint firstItem="6c7-Xz-0xl" firstAttribute="width" secondItem="ccv-S4-8jW" secondAttribute="height" multiplier="31:128" id="ai2-F7-nS9"/>
-                        </constraints>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </skView>
                     <navigationItem key="navigationItem" id="q7G-Ga-fs5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5RH-H8-FAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
