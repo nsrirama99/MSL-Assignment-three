@@ -80,17 +80,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randNumber = CGFloat(Float.random(in: 0.1...0.9))
         ball.position = CGPoint(x: size.width * randNumber, y: size.height * 0.5)
         ball.physicsBody = SKPhysicsBody(circleOfRadius: size.width * 0.03)
-        ball.physicsBody?.restitution = 1.1
+        ball.physicsBody?.restitution = 1
         ball.physicsBody?.isDynamic = true
         ball.physicsBody?.affectedByGravity = false
         ball.physicsBody?.contactTestBitMask = 0x00000001
         ball.physicsBody?.collisionBitMask = 0x00000001
         ball.physicsBody?.categoryBitMask = 0x00000001
+        ball.physicsBody?.linearDamping = 0
+        ball.physicsBody?.friction = 0
         
         self.addChild(ball)
         
         let impulseX = Bool.random() ? -1 : 1
-        ball.physicsBody?.applyImpulse(CGVector(dx: 10 * impulseX, dy: 10))
+        
+        ball.physicsBody?.applyImpulse(CGVector(dx: 5 * impulseX, dy: 5))
     }
     
     func addPaddle(){
@@ -98,6 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.size = CGSize(width: 100 + extraSteps, height: 10)
         paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
         paddle.color = UIColor.gray
+        paddle.physicsBody?.restitution = 1.2
         paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
         paddle.physicsBody?.isDynamic = true
         paddle.physicsBody?.pinned = true
