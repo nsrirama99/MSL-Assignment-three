@@ -52,6 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let left = SKSpriteNode()
         let right = SKSpriteNode()
         let top = SKSpriteNode()
+        top.name = "top"
         
         left.size = CGSize(width: 10, height: size.height * 0.7)
         left.position = CGPoint(x:0, y:size.height*0.5)
@@ -115,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         // If the ball interacts with top wall, then increment
-        if contact.bodyA.node == spinBlock || contact.bodyB.node == spinBlock {
+        if contact.bodyA.node == childNode(withName: "top") || contact.bodyB.node == childNode(withName: "top") {
             self.score += 1
         }
     }
