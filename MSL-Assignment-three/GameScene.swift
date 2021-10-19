@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(ball)
         
-        var impulseX = Bool.random() ? -1 : 1
+        let impulseX = Bool.random() ? -1 : 1
         ball.physicsBody?.applyImpulse(CGVector(dx: 10 * impulseX, dy: 10))
     }
     
@@ -99,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.color = UIColor.gray
         paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
         paddle.physicsBody?.isDynamic = true
+        paddle.physicsBody?.pinned = true
         paddle.physicsBody?.allowsRotation = false
         paddle.physicsBody?.affectedByGravity = false
         self.addChild(paddle)
