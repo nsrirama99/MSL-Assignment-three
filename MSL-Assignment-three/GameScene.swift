@@ -87,6 +87,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.categoryBitMask = 0x00000001
         
         self.addChild(ball)
+        
+        var impulseX = Int.random(in: 0...1) ? -1 : 1
+        var impulseY = Int.random(in: 0...1) ? -1 : 1
+        ball.physicsBody?.applyImpulse(CGVector(dx: 10 * impulseX, dy: 10 * impulseY))
     }
     
     func addPaddle(){
