@@ -88,9 +88,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(ball)
         
-        var impulseX = Int.random(in: 0...1) ? -1 : 1
-        var impulseY = Int.random(in: 0...1) ? -1 : 1
-        ball.physicsBody?.applyImpulse(CGVector(dx: 10 * impulseX, dy: 10 * impulseY))
+        var impulseX = Bool.random() ? -1 : 1
+        ball.physicsBody?.applyImpulse(CGVector(dx: 10 * impulseX, dy: 10))
     }
     
     func addPaddle(){
@@ -111,5 +110,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontSize = 16
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.minY)
         addChild(scoreLabel)
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        // If the ball interacts with top wall, then increment
+        if contact.bodyA.node == spinBlock || contact.bodyB.node == spinBlock {
+            self.score += 1
+        }
     }
 }
