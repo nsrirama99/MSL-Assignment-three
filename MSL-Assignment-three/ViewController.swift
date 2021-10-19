@@ -20,11 +20,14 @@ class ViewController: UIViewController, ModalDelegate {
     let pedometer = CMPedometer()
     
     
+    
+    
     @IBOutlet weak var YesterdayLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var currActivityLabel: UILabel!
     @IBOutlet weak var stepsToGoalLabel: UILabel!
     
+    @IBOutlet weak var transitionButton: UIButton!
     @IBOutlet weak var setGoalButton: UIButton!
     
     
@@ -69,6 +72,7 @@ class ViewController: UIViewController, ModalDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         //put stepGoal in User Defaults
         if(stepGoal > 0) {
             defaults.set(stepGoal, forKey: "stepGoalKey")
@@ -78,7 +82,6 @@ class ViewController: UIViewController, ModalDelegate {
         if(CMMotionActivityManager.isActivityAvailable()) {
             self.activityManager.stopActivityUpdates()
         }
-        super.viewWillDisappear(animated)
     }
 
     func getYesterdaySteps() {
@@ -92,6 +95,7 @@ class ViewController: UIViewController, ModalDelegate {
                 DispatchQueue.main.async {
                     self.YesterdayLabel.text = "Steps Taken Yesterday: \(data!.numberOfSteps)"
                 }
+                self.yesterdaySteps = Int(data!.numberOfSteps)
             }
 
         }
@@ -136,6 +140,10 @@ class ViewController: UIViewController, ModalDelegate {
     } //end startActivityMonitoring
     
     
+    @IBAction func buttonPressed(_ sender: Any) {
+//        self.performSegue(withIdentifier: "Game", sender: stepsToPrevGoal)
+        print(stepsToPrevGoal)
+    }
     @IBAction func setNewGoal(_ sender: Any) {
         let modalController = storyboard?.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
         modalController.delegate = self
@@ -145,6 +153,14 @@ class ViewController: UIViewController, ModalDelegate {
     func setStepGoal(value: Int) {
         stepGoal = value
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Game") {
+            let secondViewController = segue.destination as! ViewControllerTwo
+            secondViewController.sendSteps = stepsToPrevGoal
+        }
+    }
+    
     
 } //end of class
 

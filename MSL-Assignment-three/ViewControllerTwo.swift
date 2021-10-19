@@ -9,6 +9,8 @@ import UIKit
 import SpriteKit
 
 class ViewControllerTwo: UIViewController {
+    
+    var sendSteps:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +19,9 @@ class ViewControllerTwo: UIViewController {
         let scene = GameScene(size:view.bounds.size)
         let skView = view as! SKView
         scene.scaleMode = .resizeFill
+        skView.showsNodeCount = true
         skView.presentScene(scene)
+        print(sendSteps)
     }
     
     

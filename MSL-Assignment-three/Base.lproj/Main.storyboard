@@ -53,9 +53,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="oyE-gw-koK" kind="show" id="wcS-2x-DPE"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -140,6 +137,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUT-fb-L8d">
+                                <rect key="frame" x="148" y="676" width="118" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9n-VN-IA6"/>
+                                    <segue destination="oyE-gw-koK" kind="show" identifier="Game" id="zJq-Yd-l80"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -170,6 +177,7 @@
                         <outlet property="setGoalButton" destination="KLc-0N-nyP" id="Yde-jv-Qj2"/>
                         <outlet property="stepsToGoalLabel" destination="GfK-cX-NS5" id="PXh-55-Eid"/>
                         <outlet property="todayLabel" destination="zr5-Dr-P43" id="QVE-z9-lRI"/>
+                        <outlet property="transitionButton" destination="QUT-fb-L8d" id="sGT-gl-F92"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -248,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5RH-H8-FAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="353.62318840579712" y="-48.214285714285715"/>
+            <point key="canvasLocation" x="354" y="40"/>
         </scene>
     </scenes>
     <resources>
