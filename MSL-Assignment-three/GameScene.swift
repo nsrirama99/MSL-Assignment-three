@@ -172,6 +172,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         decrement.fontColor = SKColor.black
         increment.position = CGPoint(x: frame.maxX - 20, y: frame.minY + 30)
         decrement.position = CGPoint(x: frame.minX + 20, y: frame.minY + 30)
+        self.addChild(increment)
+        self.addChild(decrement)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -189,15 +191,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             if touchedNode.name == "widen" {
-                if (extraSteps > 0){
-                   paddleWidth += 1
-                   extraSteps -= 1
+                if (self.extraSteps > 10){
+                    self.paddleWidth += 10
+                    self.extraSteps -= 10
                 }
             }
             else if touchedNode.name == "narrow" {
-                if (paddleWidth > 25){
-                    paddleWidth -= 1
-                    extraSteps += 1
+                if (self.paddleWidth > 30){
+                    self.paddleWidth -= 10
+                    self.extraSteps += 10
                 }
             }
             else if touchedNode.name == "start" {
