@@ -61,6 +61,7 @@ class ViewController: UIViewController, ModalDelegate {
         // Do any additional setup after loading the view.
         getYesterdaySteps()
         startPedometerMonitoring()
+        startActivityMonitoring()
         
         let goal = defaults.integer(forKey: "stepGoalKey")
         if(goal != 0) {
