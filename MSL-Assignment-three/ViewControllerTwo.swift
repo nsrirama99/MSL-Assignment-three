@@ -18,6 +18,8 @@ class ViewControllerTwo: UIViewController {
         // setup game scene
         let scene = GameScene(size:view.bounds.size)
         let skView = view as! SKView
+        
+        scene.setSteps(steps: sendSteps ?? 0)
         scene.scaleMode = .resizeFill
         skView.showsNodeCount = true
         skView.presentScene(scene)

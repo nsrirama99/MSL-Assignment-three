@@ -155,9 +155,20 @@ class ViewController: UIViewController, ModalDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if (segue.identifier == "Game") {
+            
+            var extraSteps = 0
+            
+            if (stepsToPrevGoal < 0 && stepGoal != -999){
+                extraSteps = abs(stepsToPrevGoal)
+            
+            }
+            
             let secondViewController = segue.destination as! ViewControllerTwo
-            secondViewController.sendSteps = stepsToPrevGoal
+            
+            secondViewController.sendSteps = extraSteps
+            
         }
     }
     

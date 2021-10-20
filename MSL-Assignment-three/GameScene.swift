@@ -14,6 +14,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let motion = CMMotionManager()
     var extraSteps = 0
     
+    func setSteps(steps:Int){
+        self.extraSteps = steps
+    }
+    
     var referenceRoll = 0.0
     
     let scoreLabel = SKLabelNode()
