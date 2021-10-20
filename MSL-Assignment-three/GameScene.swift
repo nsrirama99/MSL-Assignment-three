@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addStart()
         self.addWalls()
         self.addBall()
-        self.addPaddle(self.paddleWidth)
+        self.addPaddle(paddleWidth: self.paddleWidth)
         self.addBoundary()
         self.addScore()
         self.addWidener()
@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.paddleWidth += 10
                     self.extraSteps -= 10
                     childNode(withName: "paddle")?.removeFromParent()
-                    addPaddle(self.paddleWidth)
+                    addPaddle(paddleWidth: self.paddleWidth)
                 }
             }
             else if touchedNode.name == "narrow" {
@@ -197,12 +197,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.paddleWidth -= 10
                     self.extraSteps += 10
                     childNode(withName: "paddle")?.removeFromParent()
-                    addPaddle(self.paddleWidth)
+                    addPaddle(paddleWidth: self.paddleWidth)
                 }
             }
             else if touchedNode.name == "start" {
-                childNode(withName: "increment")?.removeFromParent()
-                childNode(withName: "decrement")?.removeFromParent()
+                childNode(withName: "widen")?.removeFromParent()
+                childNode(withName: "narrow")?.removeFromParent()
                 childNode(withName: "start")?.removeFromParent()
                 let impulseX = Bool.random() ? -1 : 1
                 childNode(withName:"ball")?.physicsBody?.applyImpulse(CGVector(dx: 5 * impulseX, dy: 5))
