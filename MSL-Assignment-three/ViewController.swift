@@ -51,6 +51,10 @@ class ViewController: UIViewController, ModalDelegate {
     lazy var stepGoal = -999 {
         didSet {
             stepsToGoalLabel.text = "Steps to Reach Goal: \(stepGoal-currSteps)"
+            stepsToPrevGoal = stepGoal - yesterdaySteps
+            if(stepsToPrevGoal <= 0){
+                transitionButton.isEnabled = true
+            }
         }
     }
     lazy var stepsToGoal = -999
