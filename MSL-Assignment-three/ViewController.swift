@@ -42,22 +42,34 @@ class ViewController: UIViewController, ModalDelegate {
         }
     }
     
-    lazy var yesterdaySteps = 0 {
+     var yesterdaySteps = 0 {
         didSet {
             if(stepGoal > 0) {
                 stepsToPrevGoal = stepGoal - yesterdaySteps
+                if(stepsToPrevGoal <= 0){
+                    DispatchQueue.main.async {
+                        self.transitionButton.isEnabled = true
+                    }
+                }
+                
             }
+            
         }
     }
     
     lazy var stepGoal = -999 {
         didSet {
             DispatchQueue.main.async {
-                self.stepsToGoalLabel.text = "Steps to Reach Goal: \(self.stepGoal-self.currSteps)"
+               self.stepsToGoalLabel.text = "Steps to Reach Goal: \(self.stepGoal-self.currSteps)"
             }
             stepsToPrevGoal = stepGoal - yesterdaySteps
+            
+            
             if(stepsToPrevGoal <= 0){
-                transitionButton.isEnabled = true
+                DispatchQueue.main.async {
+                    self.transitionButton.isEnabled = true
+                }
+                
             }
         }
     }
@@ -67,15 +79,26 @@ class ViewController: UIViewController, ModalDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         getYesterdaySteps()
+        
         startPedometerMonitoring()
         startActivityMonitoring()
+        
         
         let goal = defaults.integer(forKey: "stepGoalKey")
         if(goal != 0) {
             stepGoal = goal
+            stepsToPrevGoal = stepGoal - yesterdaySteps
         } else {
             stepsToGoalLabel.text = "No Goal has been Set"
+        }
+        
+        print(stepsToPrevGoal)
+        
+        if(stepsToPrevGoal <= 0){
+            
+                self.transitionButton.isEnabled = true
         }
 
     }
@@ -101,10 +124,12 @@ class ViewController: UIViewController, ModalDelegate {
 
             pedometer.queryPedometerData(from: y!, to: x) { (data, error) in
                 // set yesterday label here
+                self.yesterdaySteps = data!.numberOfSteps.intValue
+                
                 DispatchQueue.main.async {
                     self.YesterdayLabel.text = "Steps Taken Yesterday: \(data!.numberOfSteps)"
                 }
-                self.yesterdaySteps = Int(data!.numberOfSteps)
+                
             }
 
         }

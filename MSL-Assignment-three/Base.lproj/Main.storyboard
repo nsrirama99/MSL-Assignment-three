@@ -131,17 +131,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGw-bg-aSv">
-                                <rect key="frame" x="186" y="751" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUT-fb-L8d">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUT-fb-L8d">
                                 <rect key="frame" x="148" y="676" width="118" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Play Game!"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9n-VN-IA6"/>
                                     <segue destination="oyE-gw-koK" kind="show" identifier="Game" id="zJq-Yd-l80"/>
@@ -152,11 +146,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GfK-cX-NS5" firstAttribute="top" secondItem="eOe-9w-UNA" secondAttribute="bottom" constant="63" id="1nq-Gq-oug"/>
-                            <constraint firstItem="eOe-9w-UNA" firstAttribute="centerX" secondItem="hGw-bg-aSv" secondAttribute="centerX" id="3H3-3i-pa8"/>
                             <constraint firstItem="eOe-9w-UNA" firstAttribute="leading" secondItem="GfK-cX-NS5" secondAttribute="leading" id="3O1-WQ-mXB"/>
                             <constraint firstItem="eOe-9w-UNA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5W2-Un-kym"/>
                             <constraint firstItem="eOe-9w-UNA" firstAttribute="leading" secondItem="zr5-Dr-P43" secondAttribute="leading" id="B8n-tH-ONe"/>
-                            <constraint firstItem="hGw-bg-aSv" firstAttribute="top" secondItem="KLc-0N-nyP" secondAttribute="bottom" constant="83" id="O78-Wx-Z0f"/>
                             <constraint firstItem="eOe-9w-UNA" firstAttribute="centerX" secondItem="KLc-0N-nyP" secondAttribute="centerX" id="OA3-Wh-Rnj"/>
                             <constraint firstItem="KLc-0N-nyP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="140" id="SPT-R2-xVr"/>
                             <constraint firstItem="eOe-9w-UNA" firstAttribute="trailing" secondItem="GfK-cX-NS5" secondAttribute="trailing" id="gvZ-KW-qcw"/>
