@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var paddleWidth = 100
     let paddle = SKSpriteNode()
     
     override func didMove(to view: SKView) {
@@ -35,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addStart()
         self.addWalls()
         self.addBall()
-        self.addPaddle()
+        self.addPaddle(self.paddleWidth)
         self.addBoundary()
         self.addScore()
         self.addWidener()
@@ -113,9 +114,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(ball)
     }
     
-    func addPaddle(){
+    func addPaddle(paddleWidth: Int){
         self.paddle.name = "paddle"
-        self.paddle.size = CGSize(width: 100, height: 10)
+        self.paddle.size = CGSize(width: paddleWidth, height: 10)
         self.paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
         self.paddle.color = UIColor.gray
         self.paddle.physicsBody?.restitution = 1.0
@@ -185,14 +186,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = atPoint(location)
             if touchedNode.name == "widen" {
                 if (self.extraSteps > 10){
-                    self.paddle.scale(to: CGSize(width: self.paddle.size.width + 10, height: 10))
+                    self.paddleWidth += 10
                     self.extraSteps -= 10
+                    childNode(withName: "paddle")?.removeFromParent()
+                    addPaddle(self.paddleWidth)
                 }
             }
             else if touchedNode.name == "narrow" {
                 if (self.paddle.size.width > 30){
-                    self.paddle.scale(to: CGSize(width: self.paddle.size.width - 10, height: 10))
+                    self.paddleWidth -= 10
                     self.extraSteps += 10
+                    childNode(withName: "paddle")?.removeFromParent()
+                    addPaddle(self.paddleWidth)
                 }
             }
             else if touchedNode.name == "start" {
