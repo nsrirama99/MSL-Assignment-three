@@ -35,7 +35,9 @@ class ViewController: UIViewController, ModalDelegate {
         didSet {
             if(stepGoal > 0) {
                 stepsToGoal = stepGoal - currSteps
-                stepsToGoalLabel.text = "Steps to Reach Goal: \(stepsToGoal)"
+                DispatchQueue.main.async {
+                    self.stepsToGoalLabel.text = "Steps to Reach Goal: \(self.stepsToGoal)"
+                }
             }
         }
     }
@@ -50,7 +52,9 @@ class ViewController: UIViewController, ModalDelegate {
     
     lazy var stepGoal = -999 {
         didSet {
-            stepsToGoalLabel.text = "Steps to Reach Goal: \(stepGoal-currSteps)"
+            DispatchQueue.main.async {
+                self.stepsToGoalLabel.text = "Steps to Reach Goal: \(self.stepGoal-self.currSteps)"
+            }
             stepsToPrevGoal = stepGoal - yesterdaySteps
             if(stepsToPrevGoal <= 0){
                 transitionButton.isEnabled = true
