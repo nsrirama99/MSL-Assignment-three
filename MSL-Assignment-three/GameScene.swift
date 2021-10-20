@@ -26,13 +26,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     let paddle = SKSpriteNode()
-    var paddleWidth:Int = 100 {
-        willSet(newValue){
-            DispatchQueue.main.async {
-                self.paddle.size = CGSize(width: self.paddleWidth, height: 10)
-            }
-        }
-    }
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -192,13 +185,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = atPoint(location)
             if touchedNode.name == "widen" {
                 if (self.extraSteps > 10){
-                    self.paddleWidth += 10
+                    self.paddle.size.width 10
                     self.extraSteps -= 10
                 }
             }
             else if touchedNode.name == "narrow" {
-                if (self.paddleWidth > 30){
-                    self.paddleWidth -= 10
+                if (self.paddle.size.width > 30){
+                    self.paddle.size.width -= 10
                     self.extraSteps += 10
                 }
             }
