@@ -13,7 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let motion = CMMotionManager()
     var extraSteps = 0
+    
     var referenceRoll = 0.0
+    
     let scoreLabel = SKLabelNode()
     var score:Int = 0 {
         willSet(newValue){
@@ -23,16 +25,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    let paddle = SKSpriteNode()
+    var paddleWidth:Int = 100 {
+        willSet(newValue){
+            DispatchQueue.main.async {
+                self.paddle.size = CGSize(width: self.paddleWidth, height: 10)
+            }
+        }
+    }
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         backgroundColor = SKColor.white
         
         self.startMotionUpdates()
+        self.addStart()
         self.addWalls()
         self.addBall()
         self.addPaddle()
         self.addBoundary()
         self.addScore()
+        self.addWidener()
         self.score = 0
     }
     
@@ -41,7 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.motion.accelerometerUpdateInterval = 0.1
             self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: self.handleMotion)
             self.referenceRoll = self.motion.deviceMotion?.attitude.roll ?? 0.0;
-            
         }
     }
     
@@ -50,8 +62,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.referenceRoll = motionData?.attitude.roll ?? 0.0
         }
         let paddlePos = motionData?.attitude.roll ?? 0.0 - referenceRoll
-        childNode(withName: "paddle")?.position = CGPoint(x: size.width * 0.5 + paddlePos * 200, y: size.height * 0.15)
-        
+        childNode(withName: "paddle")?.position = CGPoint(x: size.width * 0.5 + paddlePos * 200, y: size.height * 0.15)   
+    }
+    
+    func addStart(){
+        let start = SKLabelNode()
+        start.name = "start"
+        start.text = "START"
+        start.fontSize = 48
+        start.fontColor = SKColor.black
+        start.position = CGPoint(x: frame.midX, y: size.height * 0.5)
+        addChild(start)
     }
     
     func addWalls(){
@@ -97,28 +118,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.friction = 0
         
         self.addChild(ball)
-        
-        let impulseX = Bool.random() ? -1 : 1
-        
-        ball.physicsBody?.applyImpulse(CGVector(dx: 5 * impulseX, dy: 5))
     }
     
     func addPaddle(){
-        let paddle = SKSpriteNode()
-        paddle.name = "paddle"
-        paddle.size = CGSize(width: 100 + extraSteps, height: 10)
-        paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
-        paddle.color = UIColor.gray
-        paddle.physicsBody?.restitution = 1.0
-        paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
-        paddle.physicsBody?.isDynamic = false
-        paddle.physicsBody?.allowsRotation = false
-        paddle.physicsBody?.affectedByGravity = false
-        paddle.physicsBody?.contactTestBitMask = 0x00000001
-        paddle.physicsBody?.collisionBitMask = 0x00000001
-        paddle.physicsBody?.categoryBitMask = 0x00000001
-        paddle.physicsBody?.linearDamping = 0
-        paddle.physicsBody?.friction = 0
+        self.paddle.name = "paddle"
+        self.paddle.size = CGSize(width: self.paddleWidth, height: 10)
+        self.paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
+        self.paddle.color = UIColor.gray
+        self.paddle.physicsBody?.restitution = 1.0
+        self.paddle.physicsBody = SKPhysicsBody(rectangleOf: paddle.size)
+        self.paddle.physicsBody?.isDynamic = false
+        self.paddle.physicsBody?.allowsRotation = false
+        self.paddle.physicsBody?.affectedByGravity = false
+        self.paddle.physicsBody?.contactTestBitMask = 0x00000001
+        self.paddle.physicsBody?.collisionBitMask = 0x00000001
+        self.paddle.physicsBody?.categoryBitMask = 0x00000001
+        self.paddle.physicsBody?.linearDamping = 0
+        self.paddle.physicsBody?.friction = 0
         self.addChild(paddle)
     }
     
@@ -143,6 +159,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(self.scoreLabel)
     }
     
+    func addWidener(){
+        let increment = SKLabelNode();
+        let decrement = SKLabelNode();
+        increment.name = "widen"
+        decrement.name = "narrow"
+        increment.text = "+"
+        decrement.text = "-"
+        increment.fontSize = 32
+        decrement.fontSize = 32
+        increment.fontColor = SKColor.black
+        decrement.fontColor = SKColor.black
+        increment.position = CGPoint(x: frame.maxX - 20, y: frame.minY + 30)
+        decrement.position = CGPoint(x: frame.minX + 20, y: frame.minY + 30)
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         // If the ball interacts with top wall, then increment
         if contact.bodyA.node == childNode(withName: "top") || contact.bodyB.node == childNode(withName: "top") {
@@ -150,6 +181,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if contact.bodyA.node == childNode(withName: "boundary") || contact.bodyB.node == childNode(withName: "boundary") {
             childNode(withName: "ball")?.removeFromParent();
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            if touchedNode.name == "widen" {
+                if (extraSteps > 0){
+                   paddleWidth += 1
+                   extraSteps -= 1
+                }
+            }
+            else if touchedNode.name == "narrow" {
+                if (paddleWidth > 25){
+                    paddleWidth -= 1
+                    extraSteps += 1
+                }
+            }
+            else if touchedNode.name == "start" {
+                childNode(withName: "start")?.removeFromParent();
+                let impulseX = Bool.random() ? -1 : 1
+                childNode(withName:"ball")?.physicsBody?.applyImpulse(CGVector(dx: 5 * impulseX, dy: 5))
+            }
         }
     }
 }
