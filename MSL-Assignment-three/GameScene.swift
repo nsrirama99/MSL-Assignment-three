@@ -12,7 +12,15 @@ import CoreMotion
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let motion = CMMotionManager()
-    var extraSteps = 0
+    
+    let stepLabel = SKLabelNode()
+    var extraSteps = 0 {
+        willSet(newValue){
+            DispatchQueue.main.async {
+                self.stepLabel.text = "Steps to spend on Paddle: \(self.extraSteps)"
+            }
+        }
+    }
     
     func setSteps(steps:Int){
         self.extraSteps = steps
@@ -38,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.startMotionUpdates()
         self.addStart()
+        self.addSteps()
         self.addWalls()
         self.addBall()
         self.addPaddle(paddleWidth: self.paddleWidth)
@@ -71,6 +80,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         start.fontColor = SKColor.black
         start.position = CGPoint(x: frame.midX, y: size.height * 0.5)
         addChild(start)
+    }
+    
+    func addSteps() {
+        self.stepLabel.name = "steps"
+        self.stepLabel.text = "Steps beyond yesterday's goal: \(self.extraSteps)"
+        self.stepLabel.fontSize = 24
+        self.stepLabel.fontColor = SKColor.black
+        self.stepLabel.position = CGPoint(x: frame.midX, y: size.height * 0.5 - 40)
+        addChild(self.stepLabel)
     }
     
     func addWalls(){
@@ -205,6 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             else if touchedNode.name == "start" {
+                childNode(withName: "steps")?.removeFromParent()
                 childNode(withName: "widen")?.removeFromParent()
                 childNode(withName: "narrow")?.removeFromParent()
                 childNode(withName: "start")?.removeFromParent()
