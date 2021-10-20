@@ -45,7 +45,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = SKColor.white
         
         self.startMotionUpdates()
-        self.addStart()
+        if (self.extraSteps > 0){
+            self.addStart()
+        }
         self.addSteps()
         self.addWalls()
         self.addBall()
