@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addPaddle(){
         self.paddle.name = "paddle"
-        self.paddle.size = CGSize(width: self.paddleWidth, height: 10)
+        self.paddle.size = CGSize(width: 100, height: 10)
         self.paddle.position = CGPoint(x: size.width * 0.5, y: size.height * 0.15)
         self.paddle.color = UIColor.gray
         self.paddle.physicsBody?.restitution = 1.0
@@ -185,18 +185,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchedNode = atPoint(location)
             if touchedNode.name == "widen" {
                 if (self.extraSteps > 10){
-                    self.paddle.size.width 10
+                    self.paddle.scale(to: CGSize(width: self.paddle.size.width + 10, height: 10))
                     self.extraSteps -= 10
                 }
             }
             else if touchedNode.name == "narrow" {
                 if (self.paddle.size.width > 30){
-                    self.paddle.size.width -= 10
+                    self.paddle.scale(to: CGSize(width: self.paddle.size.width - 10, height: 10))
                     self.extraSteps += 10
                 }
             }
             else if touchedNode.name == "start" {
-                childNode(withName: "start")?.removeFromParent();
+                childNode(withName: "increment")?.removeFromParent()
+                childNode(withName: "decrement")?.removeFromParent()
+                childNode(withName: "start")?.removeFromParent()
                 let impulseX = Bool.random() ? -1 : 1
                 childNode(withName:"ball")?.physicsBody?.applyImpulse(CGVector(dx: 5 * impulseX, dy: 5))
             }
